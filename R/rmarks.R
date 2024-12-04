@@ -12,13 +12,15 @@
 #' Function [rmarks] returns a \link[spatstat.geom]{ppp} object.
 #' 
 #' @examples
-#' r1 = rmarks(rMatClust = list(kappa=c(10,5), scale=c(.15,.06), mu=c(8,4)), 
-#'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2)))
-#' plot(r1)
+#' r1 = rmarks(
+#'  rMatClust = list(kappa=c(10,5), scale=c(.15,.06), mu=c(8,4)), 
+#'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
+#' ); plot(r1)
 #' 
-#' r2 = rmarks(rpoispp = list(lambda=c(3,6)),
-#'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2)))
-#' plot(r2)
+#' r2 = rmarks(
+#'  rpoispp = list(lambda=c(3,6)),
+#'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
+#' ); plot(r2)
 #' 
 #' plot(spatstat.geom::superimpose(r1, r2))
 #' 

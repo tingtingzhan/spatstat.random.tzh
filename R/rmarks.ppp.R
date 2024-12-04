@@ -7,7 +7,7 @@
 #' @param x a \link[spatstat.geom]{ppp} object
 #' 
 #' @returns
-#' All functions here return a \link[spatstat.geom]{ppp} object.
+#' All functions return a \link[spatstat.geom]{ppp} object.
 #' 
 #' @name rmarks_ppp
 NULL
@@ -15,7 +15,7 @@ NULL
 #' @rdname rmarks_ppp
 #' @param meanlog,sdlog see function \link[stats]{rlnorm}
 #' @details
-#' Function [rlnorm.ppp] generates log-normal `marks` for a \link[spatstat.geom]{ppp} object.
+#' Function [rlnorm.ppp] generates random log-normal `marks` on a \link[spatstat.geom]{ppp} object.
 #' @importFrom stats rlnorm
 #' @export rlnorm.ppp
 #' @export
@@ -31,7 +31,7 @@ rlnorm.ppp <- function(x, meanlog = 0, sdlog = 1) {
 #' @rdname rmarks_ppp
 #' @param size,prob,mu see function \link[stats]{rnbinom}
 #' @details
-#' Function [rnbinom.ppp] generates negative-binomial `marks` for a \link[spatstat.geom]{ppp} object.
+#' Function [rnbinom.ppp] generates random negative-binomial `marks` on a \link[spatstat.geom]{ppp} object.
 #' @importFrom stats rnbinom
 #' @export rnbinom.ppp
 #' @export

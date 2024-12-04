@@ -18,13 +18,13 @@ rnbinom.ppp(x, size, prob, mu)
 \item{size, prob, mu}{see function \link[stats]{rnbinom}}
 }
 \value{
-All functions here return a \link[spatstat.geom]{ppp} object.
+All functions return a \link[spatstat.geom]{ppp} object.
 }
 \description{
 Generate random \code{marks} for \link[spatstat.geom]{ppp} object.
 }
 \details{
-Function \link{rlnorm.ppp} generates log-normal \code{marks} for a \link[spatstat.geom]{ppp} object.
+Function \link{rlnorm.ppp} generates random log-normal \code{marks} on a \link[spatstat.geom]{ppp} object.
 
-Function \link{rnbinom.ppp} generates negative-binomial \code{marks} for a \link[spatstat.geom]{ppp} object.
+Function \link{rnbinom.ppp} generates random negative-binomial \code{marks} on a \link[spatstat.geom]{ppp} object.
 }
