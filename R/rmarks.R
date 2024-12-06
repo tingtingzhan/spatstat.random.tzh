@@ -1,6 +1,6 @@
 
 
-#' @title Generates \link[spatstat.geom]{ppp} and its `marks`
+#' @title Generates Marked Point Pattern
 #' 
 #' @description ..
 #' 
@@ -9,15 +9,15 @@
 #' @param win \link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.
 #' 
 #' @return 
-#' Function [rmarks] returns a \link[spatstat.geom]{ppp} object.
+#' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object.
 #' 
 #' @examples
-#' r1 = rmarks(
+#' r1 = rmarkpp(
 #'  rMatClust = list(kappa=c(10,5), scale=c(.15,.06), mu=c(8,4)), 
 #'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
 #' ); plot(r1)
 #' 
-#' r2 = rmarks(
+#' r2 = rmarkpp(
 #'  rpoispp = list(lambda=c(3,6)),
 #'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
 #' ); plot(r2)
@@ -28,7 +28,7 @@
 #' @importFrom spatstat.geom owin superimpose
 #' @importFrom stats setNames
 #' @export
-rmarks <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
+rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
   
   dots <- list(...)
   dots <- dots[lengths(dots, use.names = FALSE) > 0L]
