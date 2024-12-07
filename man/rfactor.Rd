@@ -17,7 +17,7 @@ rfactor(n, prob, levels = as.character(seq_along(prob)))
 ..
 }
 \examples{
-rfactor(n = 100, prob = c(4,2,3))
-rfactor(n = 100, prob = c(4,2,3), levels = letters[1:3])
+rfactor(n = 100L, prob = c(4,2,3))
+rfactor(n = 100L, prob = c(4,2,3), levels = letters[1:3])
 }
 \keyword{internal}

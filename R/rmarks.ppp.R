@@ -81,8 +81,8 @@ rfactor.ppp <- function(x, prob, levels = as.character(seq_along(prob))) {
 # @param ... additional parameters, currently not in use
 #' 
 #' @examples
-#' rfactor(n = 100, prob = c(4,2,3))
-#' rfactor(n = 100, prob = c(4,2,3), levels = letters[1:3])
+#' rfactor(n = 100L, prob = c(4,2,3))
+#' rfactor(n = 100L, prob = c(4,2,3), levels = letters[1:3])
 #' @keywords internal
 #' @export
 rfactor <- function(n, prob, levels = as.character(seq_along(prob))) {
