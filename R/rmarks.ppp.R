@@ -12,13 +12,14 @@
 #' Return from function [rfactor.ppp] \link[spatstat.geom]{is.multitype}.
 #' 
 #' @examples
-#' library(spatstat.random)
-#' plot(pp <- rpoispp(lambda = 100))
+#' plot(pp <- spatstat.random::rpoispp(lambda = 100))
+#' 
 #' plot(rlnorm.ppp(pp, sdlog = .5))
 #' plot(rnbinom.ppp(pp, size = 5L, prob = .3))
 #' 
-#' plot(mpp <- rfactor.ppp(pp, prob = c(2,1,3), levels = letters[1:3]))
-#' stopifnot(is.multitype(mpp))
+#' plot(mpp <- rfactor.ppp(pp, prob = c(2,1,3)))
+#' stopifnot(spatstat.geom::is.multitype(mpp))
+#' plot(rfactor.ppp(pp, prob = c(2,1,3), levels = letters[1:3]))
 #' @name rmarks_ppp
 NULL
 
@@ -60,11 +61,35 @@ rnbinom.ppp <- function(x, size, prob, mu) {
 #' @export
 rfactor.ppp <- function(x, prob, levels = as.character(seq_along(prob))) {
   x$markformat <- 'vector'
-  tmp <- sample.int(n = length(prob), size = x$n, prob = prob, replace = TRUE)
-  attr(tmp, which = 'levels') <- levels
-  attr(tmp, which = 'class') <- 'factor'
-  x$marks <- tmp
+  x$marks <- rfactor(n = x$n, prob = prob, levels = levels)
   return(x)
+}
+
+
+
+#' @title Generate Random \link[base]{factor}
+#' 
+#' @description
+#' ..
+#' 
+#' @param n \link[base]{integer} scalar
+#' 
+#' @param prob \link[base]{numeric} \link[base]{vector}, see function \link[base]{sample.int}
+#' 
+#' @param levels \link[base]{character} \link[base]{vector}, see function \link[base]{factor}
+#' 
+# @param ... additional parameters, currently not in use
+#' 
+#' @examples
+#' rfactor(n = 100, prob = c(4,2,3))
+#' rfactor(n = 100, prob = c(4,2,3), levels = letters[1:3])
+#' @keywords internal
+#' @export
+rfactor <- function(n, prob, levels = as.character(seq_along(prob))) {
+  ret <- sample.int(n = length(prob), size = n, prob = prob, replace = TRUE)
+  attr(ret, which = 'levels') <- levels
+  attr(ret, which = 'class') <- 'factor'
+  return(ret)
 }
 
 

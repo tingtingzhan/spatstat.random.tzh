@@ -38,11 +38,12 @@ Function \link{rnbinom.ppp} generates random negative-binomial \code{marks} on a
 Function \link{rfactor.ppp} generates random \link[base]{factor} \code{marks} on a \link[spatstat.geom]{ppp} object.
 }
 \examples{
-library(spatstat.random)
-plot(pp <- rpoispp(lambda = 100))
+plot(pp <- spatstat.random::rpoispp(lambda = 100))
+
 plot(rlnorm.ppp(pp, sdlog = .5))
 plot(rnbinom.ppp(pp, size = 5L, prob = .3))
 
-plot(mpp <- rfactor.ppp(pp, prob = c(2,1,3), levels = letters[1:3]))
-stopifnot(is.multitype(mpp))
+plot(mpp <- rfactor.ppp(pp, prob = c(2,1,3)))
+stopifnot(spatstat.geom::is.multitype(mpp))
+plot(rfactor.ppp(pp, prob = c(2,1,3), levels = letters[1:3]))
 }
