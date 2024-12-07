@@ -9,6 +9,16 @@
 #' @returns
 #' All functions return a \link[spatstat.geom]{ppp} object.
 #' 
+#' Return from function [rfactor.ppp] \link[spatstat.geom]{is.multitype}.
+#' 
+#' @examples
+#' library(spatstat.random)
+#' plot(pp <- rpoispp(lambda = 100))
+#' plot(rlnorm.ppp(pp, sdlog = .5))
+#' plot(rnbinom.ppp(pp, size = 5L, prob = .3))
+#' 
+#' plot(mpp <- rfactor.ppp(pp, prob = c(2,1,3), levels = letters[1:3]))
+#' stopifnot(is.multitype(mpp))
 #' @name rmarks_ppp
 NULL
 
@@ -29,7 +39,7 @@ rlnorm.ppp <- function(x, meanlog = 0, sdlog = 1) {
 }
 
 #' @rdname rmarks_ppp
-#' @param size,prob,mu see function \link[stats]{rnbinom}
+#' @param size,prob,mu see function \link[stats]{rnbinom} and/or \link[base]{sample.int}
 #' @details
 #' Function [rnbinom.ppp] generates random negative-binomial `marks` on a \link[spatstat.geom]{ppp} object.
 #' @importFrom stats rnbinom
@@ -38,6 +48,22 @@ rlnorm.ppp <- function(x, meanlog = 0, sdlog = 1) {
 rnbinom.ppp <- function(x, size, prob, mu) {
   x$markformat <- 'vector'
   x$marks <- rnbinom(n = x$n, size = size, prob = prob, mu = mu)
+  return(x)
+}
+
+
+#' @rdname rmarks_ppp
+#' @param levels see function \link[base]{factor}
+#' @details
+#' Function [rfactor.ppp] generates random \link[base]{factor} `marks` on a \link[spatstat.geom]{ppp} object.
+#' @export rfactor.ppp
+#' @export
+rfactor.ppp <- function(x, prob, levels = as.character(seq_along(prob))) {
+  x$markformat <- 'vector'
+  tmp <- sample.int(n = length(prob), size = x$n, prob = prob, replace = TRUE)
+  attr(tmp, which = 'levels') <- levels
+  attr(tmp, which = 'class') <- 'factor'
+  x$marks <- tmp
   return(x)
 }
 

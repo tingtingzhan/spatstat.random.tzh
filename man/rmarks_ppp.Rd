@@ -4,21 +4,28 @@
 \alias{rmarks_ppp}
 \alias{rlnorm.ppp}
 \alias{rnbinom.ppp}
+\alias{rfactor.ppp}
 \title{Generate Random \code{marks} for \link[spatstat.geom]{ppp} Object}
 \usage{
 rlnorm.ppp(x, meanlog = 0, sdlog = 1)
 
 rnbinom.ppp(x, size, prob, mu)
+
+rfactor.ppp(x, prob, levels = as.character(seq_along(prob)))
 }
 \arguments{
 \item{x}{a \link[spatstat.geom]{ppp} object}
 
 \item{meanlog, sdlog}{see function \link[stats]{rlnorm}}
 
-\item{size, prob, mu}{see function \link[stats]{rnbinom}}
+\item{size, prob, mu}{see function \link[stats]{rnbinom} and/or \link[base]{sample.int}}
+
+\item{levels}{see function \link[base]{factor}}
 }
 \value{
 All functions return a \link[spatstat.geom]{ppp} object.
+
+Return from function \link{rfactor.ppp} \link[spatstat.geom]{is.multitype}.
 }
 \description{
 Generate random \code{marks} for \link[spatstat.geom]{ppp} object.
@@ -27,4 +34,15 @@ Generate random \code{marks} for \link[spatstat.geom]{ppp} object.
 Function \link{rlnorm.ppp} generates random log-normal \code{marks} on a \link[spatstat.geom]{ppp} object.
 
 Function \link{rnbinom.ppp} generates random negative-binomial \code{marks} on a \link[spatstat.geom]{ppp} object.
+
+Function \link{rfactor.ppp} generates random \link[base]{factor} \code{marks} on a \link[spatstat.geom]{ppp} object.
+}
+\examples{
+library(spatstat.random)
+plot(pp <- rpoispp(lambda = 100))
+plot(rlnorm.ppp(pp, sdlog = .5))
+plot(rnbinom.ppp(pp, size = 5L, prob = .3))
+
+plot(mpp <- rfactor.ppp(pp, prob = c(2,1,3), levels = letters[1:3]))
+stopifnot(is.multitype(mpp))
 }
