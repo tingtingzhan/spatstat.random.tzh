@@ -10,7 +10,7 @@
 #' @param mu \link[base]{list} or \link[base]{data.frame}. 
 #' Each element must be a \link[base]{numeric} scalar or \link[base]{vector}
 #' 
-#' @param Sigma \link[base]{list} or \link[base]{data.frame}.
+#' @param Sigma \link[base]{list}.
 #' Each element must be \link[base]{numeric}, either 
 #' a scalar, a \link[base]{vector} or a \link[base]{matrix}, 
 #' to be used as the \link[stats]{var}iance-\link[stats]{cov}ariance matrices.
@@ -26,8 +26,6 @@
 rmvnorm_ <- function(n, mu, Sigma, ...) {
   
   if (!setequal(names(mu), names(Sigma))) stop('`mu` and `Sigma` must have same names')
-  nm <- names(mu)
-  Sigma <- Sigma[nm]
   
   fn1 <- function(n, mu, Sigma) {
     d <- length(mu)
@@ -42,6 +40,6 @@ rmvnorm_ <- function(n, mu, Sigma, ...) {
     mvrnorm(n = n, mu = mu, Sigma = Sigma) # matrix of `n`-by-`d`
   }
   
-  return(mapply(FUN = fn1, mu = mu, Sigma = Sigma, MoreArgs = list(n = n), SIMPLIFY = FALSE))
+  return(mapply(FUN = fn1, mu = mu, Sigma = Sigma[names(mu)], MoreArgs = list(n = n), SIMPLIFY = FALSE))
   
 }

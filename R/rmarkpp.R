@@ -14,12 +14,12 @@
 #' 
 #' @param element1 \link[base]{logical} scalar, whether to return 
 #' a \link[spatstat.geom]{ppp} object, 
-#' instead of \link[base]{list} of \link[base]{length}-1,
+#' instead of a \link[base]{length}-`1L` \link[base]{list},
 #' when `n==1L`. Default `TRUE`
 #' 
 #' @return 
-#' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object if `(n==1L) & element1`,
-#' otherwise returns a \link[base]{list} of \link[spatstat.geom]{ppp} objects of \link[base]{length}-`n`.
+#' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object if `(n==1L)&element1`,
+#' otherwise returns a \link[base]{length}-`n` \link[base]{list} of \link[spatstat.geom]{ppp} objects.
 #' 
 #' @examples
 #' r1 = rmarkpp(

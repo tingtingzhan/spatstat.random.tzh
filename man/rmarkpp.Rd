@@ -22,12 +22,12 @@ Default \code{1L}.}
 
 \item{element1}{\link[base]{logical} scalar, whether to return
 a \link[spatstat.geom]{ppp} object,
-instead of \link[base]{list} of \link[base]{length}-1,
+instead of a \link[base]{length}-\code{1L} \link[base]{list},
 when \code{n==1L}. Default \code{TRUE}}
 }
 \value{
-Function \link{rmarkpp} returns a \link[spatstat.geom]{ppp} object if \code{(n==1L) & element1},
-otherwise returns a \link[base]{list} of \link[spatstat.geom]{ppp} objects of \link[base]{length}-\code{n}.
+Function \link{rmarkpp} returns a \link[spatstat.geom]{ppp} object if \code{(n==1L)&element1},
+otherwise returns a \link[base]{length}-\code{n} \link[base]{list} of \link[spatstat.geom]{ppp} objects.
 }
 \description{
 ..
