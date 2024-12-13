@@ -4,12 +4,22 @@
 #' 
 #' @description ..
 #' 
+#' @param n \link[base]{integer} scalar, 
+#' number of \link[spatstat.geom]{ppp} objects to generate.
+#' Default `1L`.
+#' 
 #' @param ... see examples, for now
 #' 
 #' @param win \link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.
 #' 
+#' @param element1 \link[base]{logical} scalar, whether to return 
+#' a \link[spatstat.geom]{ppp} object, 
+#' instead of \link[base]{list} of \link[base]{length}-1,
+#' when `n==1L`. Default `TRUE`
+#' 
 #' @return 
-#' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object.
+#' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object if `(n==1L) & element1`,
+#' otherwise returns a \link[base]{list} \link[spatstat.geom]{ppp} objects.
 #' 
 #' @examples
 #' r1 = rmarkpp(
@@ -28,7 +38,12 @@
 #' @importFrom spatstat.geom owin superimpose
 #' @importFrom stats setNames
 #' @export
-rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
+rmarkpp <- function(
+    n = 1L, 
+    ..., 
+    win = owin(xrange = c(-1,1), yrange = c(-1,1)),
+    element1 = TRUE
+) {
   
   dots <- list(...)
   dots <- dots[lengths(dots, use.names = FALSE) > 0L]
@@ -42,16 +57,15 @@ rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
     return(z) # 'data.frame'
   })
   
-  n <- .row_names_info(par0, type = 2L)
-  
-  ret <- lapply(seq_len(n), FUN = function(j) { # (j = 1L)
+  ret <- replicate(n = n, expr = do.call(what = superimpose, args = lapply(seq_len(.row_names_info(par0, type = 2L)), FUN = function(j) { # (j = 1L)
     par1 <- as.list.data.frame(par[[1L]][j,])
     par2 <- as.list.data.frame(par[[2L]][j,])
     X <- do.call(what = rfn[[1L]], args = c(list(win = win), par1)) # `X$n` is randomly generated too!
     do.call(what = paste0(rfn[[2L]], '.ppp'), args = c(list(x = X), par2))
-  })
+  })), simplify = FALSE)
   
-  do.call(what = superimpose, args = ret)
+  if ((n == 1L) && element1) return(ret[[1L]])
+  return(ret)
   
 } 
 
@@ -63,12 +77,15 @@ rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
 
 #' @title [batch_rmarkpp]
 #' 
+#' @param n \link[base]{integer} \link[base]{vector}, 
+#' numbers of \link[spatstat.geom]{ppp} objects to generate for each set of parameters
+#' 
 #' @param ... see examples, for now
 #' 
 #' @param win \link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.
 #' 
 #' @export
-batch_rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
+batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
   
   dots <- list(...)
   dots <- dots[lengths(dots, use.names = FALSE) > 0L]
@@ -80,9 +97,14 @@ batch_rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
   })
   pars <- .mapply(FUN = list, dots = tmp, MoreArgs = NULL)
 
-  lapply(pars, FUN = function(p) { # (p = pars[[1L]])
-    do.call(what = rmarkpp, args = p)
-  })
+  ret0 <- mapply(FUN = function(n, p) { # (p = pars[[1L]])
+    do.call(what = rmarkpp, args = c(p, list(n = n, win = win, element1 = FALSE)))
+  }, p = pars, n = n)
+  
+  ret <- unlist(ret0, recursive = FALSE)
+  attr(ret, which = 'id') <- rep(seq_along(n), times = n)
+  return(ret)
+  
 }
 
 

@@ -4,9 +4,12 @@
 \alias{batch_rmarkpp}
 \title{\link{batch_rmarkpp}}
 \usage{
-batch_rmarkpp(..., win = owin(xrange = c(-1, 1), yrange = c(-1, 1)))
+batch_rmarkpp(n, ..., win = owin(xrange = c(-1, 1), yrange = c(-1, 1)))
 }
 \arguments{
+\item{n}{\link[base]{integer} \link[base]{vector},
+numbers of \link[spatstat.geom]{ppp} objects to generate for each set of parameters}
+
 \item{...}{see examples, for now}
 
 \item{win}{\link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.}

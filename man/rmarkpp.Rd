@@ -4,15 +4,30 @@
 \alias{rmarkpp}
 \title{Generates Marked Point Pattern}
 \usage{
-rmarkpp(..., win = owin(xrange = c(-1, 1), yrange = c(-1, 1)))
+rmarkpp(
+  n = 1L,
+  ...,
+  win = owin(xrange = c(-1, 1), yrange = c(-1, 1)),
+  element1 = TRUE
+)
 }
 \arguments{
+\item{n}{\link[base]{integer} scalar,
+number of \link[spatstat.geom]{ppp} objects to generate.
+Default \code{1L}.}
+
 \item{...}{see examples, for now}
 
 \item{win}{\link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.}
+
+\item{element1}{\link[base]{logical} scalar, whether to return
+a \link[spatstat.geom]{ppp} object,
+instead of \link[base]{list} of \link[base]{length}-1,
+when \code{n==1L}. Default \code{TRUE}}
 }
 \value{
-Function \link{rmarkpp} returns a \link[spatstat.geom]{ppp} object.
+Function \link{rmarkpp} returns a \link[spatstat.geom]{ppp} object if \code{(n==1L) & element1},
+otherwise returns a \link[base]{list} \link[spatstat.geom]{ppp} objects.
 }
 \description{
 ..
