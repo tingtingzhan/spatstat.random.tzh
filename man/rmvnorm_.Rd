@@ -14,7 +14,8 @@ Each element must be a \link[base]{numeric} scalar or \link[base]{vector}}
 
 \item{Sigma}{\link[base]{list} or \link[base]{data.frame}.
 Each element must be \link[base]{numeric}, either
-a scalar, a \link[base]{vector} or a \link[base]{matrix}.}
+a scalar, a \link[base]{vector} or a \link[base]{matrix},
+to be used as the \link[stats]{var}iance-\link[stats]{cov}ariance matrices.}
 
 \item{...}{additional parameters, currently not in use}
 }

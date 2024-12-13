@@ -27,7 +27,7 @@ when \code{n==1L}. Default \code{TRUE}}
 }
 \value{
 Function \link{rmarkpp} returns a \link[spatstat.geom]{ppp} object if \code{(n==1L) & element1},
-otherwise returns a \link[base]{list} \link[spatstat.geom]{ppp} objects.
+otherwise returns a \link[base]{list} of \link[spatstat.geom]{ppp} objects of \link[base]{length}-\code{n}.
 }
 \description{
 ..

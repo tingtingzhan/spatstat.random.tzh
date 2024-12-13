@@ -19,7 +19,7 @@
 #' 
 #' @return 
 #' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object if `(n==1L) & element1`,
-#' otherwise returns a \link[base]{list} \link[spatstat.geom]{ppp} objects.
+#' otherwise returns a \link[base]{list} of \link[spatstat.geom]{ppp} objects of \link[base]{length}-`n`.
 #' 
 #' @examples
 #' r1 = rmarkpp(
