@@ -61,5 +61,30 @@ rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
 # Avoid name clash \link[stats]{window}.
 
 
+#' @title [batch_rmarkpp]
+#' 
+#' @param ... see examples, for now
+#' 
+#' @param win \link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.
+#' 
+#' @export
+batch_rmarkpp <- function(..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
+  
+  dots <- list(...)
+  dots <- dots[lengths(dots, use.names = FALSE) > 0L]
+  
+  tmp <- lapply(dots, FUN = function(.x) { # (.x = dots[[1L]])
+    .mapply(FUN = list, dots = lapply(.x, FUN = function(.y) { # (.y = .x[[1L]])
+      lapply(seq_len(nrow(.y)), FUN = function(i) .y[i, , drop = TRUE])
+    }), MoreArgs = NULL)
+  })
+  pars <- .mapply(FUN = list, dots = tmp, MoreArgs = NULL)
+
+  lapply(pars, FUN = function(p) { # (p = pars[[1L]])
+    do.call(what = rmarkpp, args = p)
+  })
+}
+
+
 
 
