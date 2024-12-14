@@ -3,6 +3,7 @@
 S3method(sort_by,ppp)
 export(addNamespace)
 export(batch_rmarkpp)
+export(mvrnorm2)
 export(rfactor)
 export(rfactor.ppp)
 export(rlnorm.ppp)
