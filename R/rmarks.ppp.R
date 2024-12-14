@@ -24,36 +24,6 @@
 NULL
 
 #' @rdname rmarks_ppp
-#' @param meanlog,sdlog see function \link[stats]{rlnorm}
-#' @details
-#' Function [rlnorm.ppp] generates random log-normal `marks` on a \link[spatstat.geom]{ppp} object.
-#' @importFrom stats rlnorm
-#' @export rlnorm.ppp
-#' @export
-rlnorm.ppp <- function(x, meanlog = 0, sdlog = 1) {
-  x$markformat <- 'vector'
-  x$marks <- rlnorm(n = x$n, meanlog = meanlog, sdlog = sdlog)
-  return(x)
-  #ppp(x = x$x, y = x$y, window = x$window, marks = rlnorm(n = x$n, meanlog = meanlog, sdlog = sdlog))
-  # they are ?base::identical, as of 2024-11-18 # packageDate('spatstat.geom')
-  # so that Tingting does not need to @importFrom spatstat.geom ppp
-}
-
-#' @rdname rmarks_ppp
-#' @param size,prob,mu see function \link[stats]{rnbinom} and/or \link[base]{sample.int}
-#' @details
-#' Function [rnbinom.ppp] generates random negative-binomial `marks` on a \link[spatstat.geom]{ppp} object.
-#' @importFrom stats rnbinom
-#' @export rnbinom.ppp
-#' @export
-rnbinom.ppp <- function(x, size, prob, mu) {
-  x$markformat <- 'vector'
-  x$marks <- rnbinom(n = x$n, size = size, prob = prob, mu = mu)
-  return(x)
-}
-
-
-#' @rdname rmarks_ppp
 #' @param levels see function \link[base]{factor}
 #' @details
 #' Function [rfactor.ppp] generates random \link[base]{factor} `marks` on a \link[spatstat.geom]{ppp} object.
@@ -64,6 +34,89 @@ rfactor.ppp <- function(x, prob, levels = as.character(seq_along(prob))) {
   x$marks <- rfactor(n = x$n, prob = prob, levels = levels)
   return(x)
 }
+
+
+
+
+#' @title Generate Random Marks Generation Function
+#' 
+#' @param f \link[base]{function} of random number generation, 
+#' e.g., \link[stats]{rlnorm}, \link[stats]{rnbinom}, etc.
+#' 
+#' @returns 
+#' Function [rmarks_ppp_] returns a **\link[base]{function}**.
+#' 
+#' @examples
+#' rmarks_ppp_(rlnorm)
+#' @keywords internal
+#' @export
+rmarks_ppp_ <- function(f) {
+  # (f = stats::rlnorm)
+  
+  f_ <- substitute(f)
+  if (!is.symbol(f_)) stop('`f` must be symbol')
+  
+  ag <- as.list(args(f))
+  
+  ret <- ag
+  names(ret)[[1L]] <- 'x'
+  
+  tmp <- ag[-length(ag)]
+  tmp[[1L]] <- quote(x$n)
+  par <- names(tmp)[-1L]
+  tmp[-1L] <- lapply(par, FUN = as.symbol) # names retained!
+  
+  ret[[length(ret)]] <- call(name = '{', 
+    call(name = '<-', quote(x$markformat), 'vector'), 
+    call(name = '<-', quote(x$marks), as.call(c(list(f_), tmp))),
+    call(name = 'return', quote(x))
+  )
+  
+  #  #ppp(x = x$x, y = x$y, window = x$window, marks = rlnorm(n = x$n, meanlog = meanlog, sdlog = sdlog))
+  #  # they are ?base::identical, as of 2024-11-18 # packageDate('spatstat.geom')
+  #  # so that Tingting does not need to @importFrom spatstat.geom ppp
+  
+  return(as.function.default(ret))
+  
+}
+
+
+
+#' @rdname rmarks_ppp
+#' @param meanlog,sdlog see function \link[stats]{rlnorm}
+#' @details
+#' Function [rlnorm.ppp] generates random log-normal `marks` on a \link[spatstat.geom]{ppp} object.
+#' @importFrom stats rlnorm
+#' @export rlnorm.ppp
+#' @export
+rlnorm.ppp <- rmarks_ppp_(rlnorm)
+#function(x, meanlog = 0, sdlog = 1) {
+#  x$markformat <- 'vector'
+#  x$marks <- rlnorm(n = x$n, meanlog = meanlog, sdlog = sdlog)
+#  return(x)
+#}
+
+#' @rdname rmarks_ppp
+#' @param size,prob,mu see function \link[stats]{rnbinom} and/or \link[base]{sample.int}
+#' @details
+#' Function [rnbinom.ppp] generates random negative-binomial `marks` on a \link[spatstat.geom]{ppp} object.
+#' @importFrom stats rnbinom
+#' @export rnbinom.ppp
+#' @export
+rnbinom.ppp <- rmarks_ppp_(rnbinom)
+#function(x, size, prob, mu) {
+#  x$markformat <- 'vector'
+#  x$marks <- rnbinom(n = x$n, size = size, prob = prob, mu = mu)
+#  return(x)
+#}
+
+
+
+
+
+
+
+
 
 
 
