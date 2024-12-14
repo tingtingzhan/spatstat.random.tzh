@@ -11,7 +11,9 @@ rmarks_ppp_(f)
 e.g., \link[stats]{rlnorm}, \link[stats]{rnbinom}, etc.}
 }
 \value{
-Function \link{rmarks_ppp_} returns a \strong{\link[base]{function}}.
+Function \link{rmarks_ppp_} returns a \emph{\strong{\link[base]{function}}},
+which generates random marks of a \link[spatstat.geom]{ppp} object
+following the distribution specified by argument \code{f}.
 }
 \description{
 Generate Random Marks Generation Function

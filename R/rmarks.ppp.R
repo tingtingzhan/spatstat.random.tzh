@@ -44,14 +44,15 @@ rfactor.ppp <- function(x, prob, levels = as.character(seq_along(prob))) {
 #' e.g., \link[stats]{rlnorm}, \link[stats]{rnbinom}, etc.
 #' 
 #' @returns 
-#' Function [rmarks_ppp_] returns a **\link[base]{function}**.
+#' Function [rmarks_ppp_] returns a ***\link[base]{function}***,
+#' which generates random marks of a \link[spatstat.geom]{ppp} object 
+#' following the distribution specified by argument `f`.
 #' 
 #' @examples
 #' rmarks_ppp_(rlnorm)
 #' @keywords internal
 #' @export
 rmarks_ppp_ <- function(f) {
-  # (f = stats::rlnorm)
   
   f_ <- substitute(f)
   if (!is.symbol(f_)) stop('`f` must be symbol')
