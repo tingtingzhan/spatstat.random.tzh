@@ -23,5 +23,5 @@ Authors@R: c(person(given = 'Tingting', family =
         'Chervoneva', role = c('aut', 'cph'), email =
         'Inna.Chervoneva@jefferson.edu', comment = c(ORCID =
         '0000-0002-9104-4505')))
-Imports: stats, spatstat.geom, spatstat.random, MASS 
+Imports: stats, spatstat.geom, spatstat.random, cli, MASS 
 
