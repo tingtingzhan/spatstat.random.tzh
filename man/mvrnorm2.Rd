@@ -26,7 +26,7 @@ Function \link{mvrnorm2} returns a \link[base]{double} \link[base]{matrix}.
 To accomondate more types of \code{Sigma} in function \link[MASS]{mvrnorm}.
 }
 \details{
-Argument of \code{Sigma} could be
+Argument of parameter \code{Sigma} could be
 \describe{
 \item{scalar}{First, \code{Sigma} is recycled to the \link[base]{length} of \code{mu}.
 Then a \link[base]{diag}onal \link[base]{matrix} with \link[base]{vector} \code{Sigma} on the diagonal elements

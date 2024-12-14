@@ -52,7 +52,7 @@ rmvnorm_ <- function(n, mu, Sigma, ...) {
 #' @param ... additional parameter of function \link[MASS]{mvrnorm}
 #' 
 #' @details
-#' Argument of `Sigma` could be
+#' Argument of parameter `Sigma` could be
 #' \describe{
 #' \item{scalar}{First, `Sigma` is recycled to the \link[base]{length} of `mu`. 
 #' Then a \link[base]{diag}onal \link[base]{matrix} with \link[base]{vector} `Sigma` on the diagonal elements
@@ -73,9 +73,7 @@ rmvnorm_ <- function(n, mu, Sigma, ...) {
 #' @export
 mvrnorm2 <- function(n, mu, Sigma, ...) {
   d <- length(mu)
-  if (is.matrix(Sigma)) {
-    if (any(dim(Sigma) != d)) stop('`dim(Sigma)` not same with length(mu)')
-  } else {
+  if (!is.matrix(Sigma)) {
     nsd <- length(Sigma)
     if (nsd == 1L) Sigma <- rep(Sigma, times = d)
     if (length(Sigma) != d) stop('`length(Sigma)` not same with length(mu)')
