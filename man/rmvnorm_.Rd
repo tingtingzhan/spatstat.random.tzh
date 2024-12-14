@@ -9,18 +9,26 @@ rmvnorm_(n, mu, Sigma, ...)
 \arguments{
 \item{n}{\link[base]{integer} scalar}
 
-\item{mu}{\link[base]{list} or \link[base]{data.frame}.
-Each element must be a \link[base]{numeric} scalar or \link[base]{vector}}
+\item{mu}{\link[base]{list} or \link[base]{data.frame},
+each element must be a \link[base]{numeric} scalar or \link[base]{vector},
+used as the multivariate means \eqn{\mathbf{\mu}}'s}
 
-\item{Sigma}{\link[base]{list}.
-Each element must be \link[base]{numeric}, either
+\item{Sigma}{\link[base]{list},
+each element must be \link[base]{numeric}, either
 a scalar, a \link[base]{vector} or a \link[base]{matrix},
-to be used as the \link[stats]{var}iance-\link[stats]{cov}ariance matrices.}
+used as the \link[stats]{var}iance-\link[stats]{cov}ariance
+\link[base]{matrix}es \eqn{\Sigma}'s}
 
 \item{...}{additional parameters, currently not in use}
 }
+\value{
+Function \link{rmvnorm_} returns a \link[base]{list} of \link[base]{matrix}es.
+}
 \description{
-Batch Process of Random Multivariate Normal Generation
+Batch process of random multivariate normal generation.
+}
+\note{
+Workhorse function \link[MASS]{mvrnorm} from package \CRANpkg{MASS} is faster than \code{?mvtnorm::rmvnorm}.
 }
 \examples{
 rmvnorm_(n = 5L, mu = list(a = c(0, 3), b = c(3, 7)), Sigma = list(a = .5, b = 1.2))

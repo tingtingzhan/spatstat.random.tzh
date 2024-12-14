@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarkpp.R
 \name{batch_rmarkpp}
 \alias{batch_rmarkpp}
-\title{\link{batch_rmarkpp}}
+\title{Batch Process of Function \link{rmarkpp}}
 \usage{
 batch_rmarkpp(n, ..., win = owin(xrange = c(-1, 1), yrange = c(-1, 1)))
 }
@@ -12,8 +12,8 @@ numbers of \link[spatstat.geom]{ppp} objects to generate for each set of paramet
 
 \item{...}{see examples, for now}
 
-\item{win}{\link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.}
+\item{win}{\link[spatstat.geom]{owin} window}
 }
 \description{
-\link{batch_rmarkpp}
+Batch Process of Function \link{rmarkpp}
 }
