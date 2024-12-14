@@ -35,7 +35,7 @@
 #' plot(spatstat.geom::superimpose(r1, r2))
 #' 
 #' @importFrom spatstat.random rMatClust rpoispp
-#' @importFrom spatstat.geom owin superimpose
+#' @importFrom spatstat.geom owin superimpose.ppp
 #' @importFrom stats setNames
 #' @export
 rmarkpp <- function(
@@ -48,21 +48,21 @@ rmarkpp <- function(
   dots <- list(...)
   dots <- dots[lengths(dots, use.names = FALSE) > 0L]
   
-  par0 <- as.data.frame(unlist(dots, recursive = FALSE)) # recycle length
-  
   rfn <- names(dots)
+  
+  par0 <- as.data.frame.list(unlist(dots, recursive = FALSE)) # recycle length
   par <- lapply(setNames(nm = rfn), FUN = function(i) { # (i = 'rMatClust')
     z <- par0[startsWith(names(par0), prefix = i)]
-    names(z) <- vapply(strsplit(names(z), split = '\\.'), FUN = `[[`, 2L, FUN.VALUE = '')
+    names(z) <- gsub(pattern = paste0('^', i, '\\.'), replacement = '', x = names(z))
     return(z) # 'data.frame'
   })
   
-  ret <- replicate(n = n, expr = do.call(what = superimpose, args = lapply(seq_len(.row_names_info(par0, type = 2L)), FUN = function(j) { # (j = 1L)
-    par1 <- as.list.data.frame(par[[1L]][j,])
-    par2 <- as.list.data.frame(par[[2L]][j,])
-    X <- do.call(what = rfn[[1L]], args = c(list(win = win), par1)) # `X$n` is randomly generated too!
-    do.call(what = paste0(rfn[[2L]], '.ppp'), args = c(list(x = X), par2))
-  })), simplify = FALSE)
+  fn <- if (length(par) == 2L) function(j) { # (j = 1L)
+    X <- do.call(what = rfn[[1L]], args = c(list(win = win), unclass(par[[1L]][j,]))) # `X$n` is randomly generated too!
+    do.call(what = paste0(rfn[[2L]], '.ppp'), args = c(list(x = X), unclass(par[[2L]][j,])))
+  } else stop('not supported yet')
+  
+  ret <- replicate(n = n, expr = do.call(what = superimpose.ppp, args = lapply(seq_len(.row_names_info(par0, type = 2L)), FUN = fn)), simplify = FALSE)
   
   if ((n == 1L) && element1) return(ret[[1L]])
   return(ret)
