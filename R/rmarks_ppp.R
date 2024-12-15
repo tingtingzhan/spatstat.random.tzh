@@ -49,9 +49,10 @@ rmarks_ppp <- function(f) {
   names(ret)[[1L]] <- 'x'
   
   tmp <- ag[-length(ag)]
-  tmp[[1L]] <- quote(x$n)
-  par <- names(tmp)[-1L]
-  tmp[-1L] <- lapply(par, FUN = as.symbol) # names retained!
+  par_ <- names(tmp)
+  tmp[] <- lapply(par_, FUN = as.symbol) # names retained!
+  names(tmp)[par_ == '...'] <- '' # important!!
+  tmp[[1L]] <- quote(x$n) # overwrite at the end; easiest in programming
   
   ret[[length(ret)]] <- call(name = '{', 
     call(name = '<-', quote(x$markformat), 'vector'), 
