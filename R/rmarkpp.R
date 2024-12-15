@@ -70,7 +70,8 @@ rmarkpp <- function(
     
     function(j) { # (j = 1L)
       X <- do.call(what = rfn[[1L]], args = c(list(win = win), unclass(par[[1L]][j,]))) # `X$n` is randomly generated too!
-      do.call(what = paste0(rfn[[2L]], '.ppp'), args = c(list(x = X), unclass(par[[2L]][j,])))
+      #do.call(what = paste0(rfn[[2L]], '.ppp'), args = c(list(x = X), unclass(par[[2L]][j,])))
+      do.call(what = rmarks_ppp(rfn[[2L]]), args = c(list(x = X), unclass(par[[2L]][j,])))
     } 
     
   } else stop('not supported yet')
