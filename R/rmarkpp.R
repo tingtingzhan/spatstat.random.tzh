@@ -69,9 +69,8 @@ rmarkpp <- function(
     # end-user may `library()`, then [ns_fun_fromImports] might err
     
     function(j) { # (j = 1L)
-      X <- do.call(what = rfn[[1L]], args = c(list(win = win), unclass(par[[1L]][j,]))) # `X$n` is randomly generated too!
-      #do.call(what = paste0(rfn[[2L]], '.ppp'), args = c(list(x = X), unclass(par[[2L]][j,])))
-      do.call(what = rmarks_ppp(rfn[[2L]]), args = c(list(x = X), unclass(par[[2L]][j,])))
+      X <- do.call(what = rfn[[1L]], args = c(list(win = win), unclass(par[[1L]][j, , drop = FALSE]))) # `X$n` is randomly generated too!
+      do.call(what = rmarks_ppp(rfn[[2L]]), args = c(list(x = X), unclass(par[[2L]][j, , drop = FALSE])))
     } 
     
   } else stop('not supported yet')
