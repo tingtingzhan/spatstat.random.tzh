@@ -118,7 +118,13 @@ batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))
   }, p = pars, n = n))
   
   ret <- unlist(ret0, recursive = FALSE)
-  attr(ret, which = 'id') <- rep(seq_along(n), times = n)
+  
+  id_ <- seq_along(n)
+  id <- rep(id_, times = n)
+  attr(id, which = 'levels') <- as.character(id_)
+  class(id) <- 'factor'
+  attr(ret, which = 'data') <- data.frame(id = id)
+  attr(ret, which = 'f1') <- id
   return(ret)
   
 }
