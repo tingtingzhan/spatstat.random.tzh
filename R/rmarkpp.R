@@ -126,10 +126,7 @@ batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))
   attr(f1, which = 'levels') <- attr(f1_, which = 'levels') <- as.character(f1_)
   class(f1) <- class(f1_) <- 'factor'
   
-  ret <- hyperframe(ppp = unlist(ret0, recursive = FALSE), f = f1)
-  attr(ret, which = 'data') <- data.frame(id = f1_)
-  
-  return(ret)
+  hyperframe(ppp = unlist(ret0, recursive = FALSE), f = f1)
   
 }
 
