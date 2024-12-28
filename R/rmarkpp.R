@@ -100,6 +100,10 @@ rmarkpp <- function(
 #' 
 #' @param win \link[spatstat.geom]{owin} window
 #' 
+#' @returns 
+#' Function [batch_rmarkpp] returns a \link[spatstat.geom]{hyperframe}.
+#' 
+#' @importFrom spatstat.geom hyperframe
 #' @export
 batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
   
@@ -116,15 +120,15 @@ batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))
   suppressMessages(ret0 <- mapply(FUN = function(n, p) { # (p = pars[[1L]])
     do.call(what = rmarkpp, args = c(p, list(n = n, win = win, element1 = FALSE)))
   }, p = pars, n = n))
-  
-  ret <- unlist(ret0, recursive = FALSE)
-  
+
   f1_ <- seq_along(n)
   f1 <- rep(f1_, times = n)
   attr(f1, which = 'levels') <- attr(f1_, which = 'levels') <- as.character(f1_)
   class(f1) <- class(f1_) <- 'factor'
+  
+  ret <- hyperframe(ppp = unlist(ret0, recursive = FALSE), f = f1)
   attr(ret, which = 'data') <- data.frame(id = f1_)
-  attr(ret, which = 'f1') <- f1
+  
   return(ret)
   
 }

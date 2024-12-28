@@ -14,6 +14,9 @@ numbers of \link[spatstat.geom]{ppp} objects to generate for each set of paramet
 
 \item{win}{\link[spatstat.geom]{owin} window}
 }
+\value{
+Function \link{batch_rmarkpp} returns a \link[spatstat.geom]{hyperframe}.
+}
 \description{
 Batch Process of Function \link{rmarkpp}
 }
