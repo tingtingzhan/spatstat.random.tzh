@@ -1,6 +1,6 @@
 
 
-#' @title Generates Marked Point Pattern
+#' @title Generate Marked Point Pattern
 #' 
 #' @description ..
 #' 
@@ -10,26 +10,27 @@
 #' 
 #' @param ... see examples, for now
 #' 
-#' @param win \link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.
+#' @param win \link[spatstat.geom]{owin} window
 #' 
 #' @param element1 \link[base]{logical} scalar, whether to return 
 #' a \link[spatstat.geom]{ppp} object, 
-#' instead of a \link[base]{length}-`1L` \link[base]{list},
+#' instead of a \link[base]{length}-`1L` \link[spatstat.geom]{solist},
 #' when `n==1L`. Default `TRUE`
 #' 
 #' @return 
 #' Function [rmarkpp] returns a \link[spatstat.geom]{ppp} object if `(n==1L)&element1`,
-#' otherwise returns a \link[base]{length}-`n` \link[base]{list} of \link[spatstat.geom]{ppp} objects.
+#' otherwise returns a \link[base]{length}-`n` \link[spatstat.geom]{solist}
+#' (which also has \link[base]{class} `'ppplist'`) object.
 #' 
 #' @examples
 #' r1 = rmarkpp(
-#'  rMatClust = list(kappa=c(10,5), scale=c(.15,.06), mu=c(8,4)), 
-#'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
+#'  rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)), 
+#'  rlnorm = list(meanlog = c(3,5), sdlog = c(.4,.2))
 #' ); plot(r1)
 #' 
 #' r2 = rmarkpp(
-#'  rpoispp = list(lambda=c(3,6)),
-#'  rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
+#'  rpoispp = list(lambda = c(3,6)),
+#'  rlnorm = list(meanlog = c(3,5), sdlog = c(.4,.2))
 #' ); plot(r2)
 #' 
 #' plot(spatstat.geom::superimpose(r1, r2))
@@ -78,6 +79,8 @@ rmarkpp <- function(
   ret <- replicate(n = n, expr = do.call(what = superimpose.ppp, args = lapply(seq_len(.row_names_info(par0, type = 2L)), FUN = fn)), simplify = FALSE)
   
   if ((n == 1L) && element1) return(ret[[1L]])
+  
+  class(ret) <- c('ppplist', 'solist', class(ret)) # see returned value of ?spatstat.geom::split.ppp
   return(ret)
   
 } 
@@ -103,7 +106,7 @@ rmarkpp <- function(
 #' @returns 
 #' Function [batch_rmarkpp] returns a \link[spatstat.geom]{hyperframe}.
 #' 
-#' @importFrom spatstat.geom hyperframe
+#' @importFrom spatstat.geom owin hyperframe
 #' @export
 batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
   
@@ -123,8 +126,8 @@ batch_rmarkpp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))
 
   f1_ <- seq_along(n)
   f1 <- rep(f1_, times = n)
-  attr(f1, which = 'levels') <- attr(f1_, which = 'levels') <- as.character(f1_)
-  class(f1) <- class(f1_) <- 'factor'
+  attr(f1, which = 'levels') <- as.character(f1_)
+  class(f1) <- 'factor'
   
   hyperframe(ppp = unlist(ret0, recursive = FALSE), f = f1)
   

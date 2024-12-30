@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarkpp.R
 \name{rmarkpp}
 \alias{rmarkpp}
-\title{Generates Marked Point Pattern}
+\title{Generate Marked Point Pattern}
 \usage{
 rmarkpp(
   n = 1L,
@@ -18,29 +18,30 @@ Default \code{1L}.}
 
 \item{...}{see examples, for now}
 
-\item{win}{\link[spatstat.geom]{owin} window, see function \link[spatstat.random]{rMatClust}, etc.}
+\item{win}{\link[spatstat.geom]{owin} window}
 
 \item{element1}{\link[base]{logical} scalar, whether to return
 a \link[spatstat.geom]{ppp} object,
-instead of a \link[base]{length}-\code{1L} \link[base]{list},
+instead of a \link[base]{length}-\code{1L} \link[spatstat.geom]{solist},
 when \code{n==1L}. Default \code{TRUE}}
 }
 \value{
 Function \link{rmarkpp} returns a \link[spatstat.geom]{ppp} object if \code{(n==1L)&element1},
-otherwise returns a \link[base]{length}-\code{n} \link[base]{list} of \link[spatstat.geom]{ppp} objects.
+otherwise returns a \link[base]{length}-\code{n} \link[spatstat.geom]{solist}
+(which also has \link[base]{class} \code{'ppplist'}) object.
 }
 \description{
 ..
 }
 \examples{
 r1 = rmarkpp(
- rMatClust = list(kappa=c(10,5), scale=c(.15,.06), mu=c(8,4)), 
- rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
+ rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)), 
+ rlnorm = list(meanlog = c(3,5), sdlog = c(.4,.2))
 ); plot(r1)
 
 r2 = rmarkpp(
- rpoispp = list(lambda=c(3,6)),
- rlnorm = list(meanlog=c(3,5), sdlog=c(.4,.2))
+ rpoispp = list(lambda = c(3,6)),
+ rlnorm = list(meanlog = c(3,5), sdlog = c(.4,.2))
 ); plot(r2)
 
 plot(spatstat.geom::superimpose(r1, r2))
