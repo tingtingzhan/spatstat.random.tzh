@@ -24,13 +24,11 @@
 #' 
 #' plot(pp <- spatstat.random::rpoispp(lambda = 100))
 #' 
-#' plot(rmarks_ppp(rlnorm)(pp, sdlog = .5))
-#' plot(rmarks_ppp(rnbinom)(pp, size = 5L, prob = .3))
+#' plot(pp |> rmarks_ppp(rlnorm)(sdlog = .5))
+#' plot(pp |> rmarks_ppp(rnbinom)(size = 5L, prob = .3))
 #' 
-#' plot(mpp <- rmarks_ppp(rfactor)(pp, prob = c(2,1,3)))
+#' plot(mpp <- pp |> rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
 #' stopifnot(spatstat.geom::is.multitype(mpp))
-#' plot(rmarks_ppp(rfactor)(pp, prob = c(2,1,3), levels = letters[1:3]))
-#' 
 #' @export
 rmarks_ppp <- function(f) {
   
