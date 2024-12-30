@@ -93,6 +93,9 @@ rmarks_ppp <- function(f) {
 #' 
 # @param ... additional parameters, currently not in use
 #' 
+#' @returns 
+#' Function [rfactor] returns a \link[base]{factor}
+#' 
 #' @examples
 #' rfactor(n = 100L, prob = c(4,2,3))
 #' rfactor(n = 100L, prob = c(4,2,3), levels = letters[1:3])

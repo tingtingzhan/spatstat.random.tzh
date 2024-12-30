@@ -13,6 +13,9 @@ rfactor(n, prob, levels = as.character(seq_along(prob)))
 
 \item{levels}{\link[base]{character} \link[base]{vector}, see function \link[base]{factor}}
 }
+\value{
+Function \link{rfactor} returns a \link[base]{factor}
+}
 \description{
 ..
 }
