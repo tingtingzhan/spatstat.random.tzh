@@ -8,6 +8,7 @@
 #' 
 #' @param ... parameters of function \link[base]{order}
 #' 
+#' @keywords internal
 #' @export sort_by.ppp
 #' @export
 sort_by.ppp <- function(x, y = c('x', 'y'), ...) {

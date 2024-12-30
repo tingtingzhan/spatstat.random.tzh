@@ -3,8 +3,6 @@
 S3method(sort_by,ppp)
 export(batch_rmarkpp)
 export(mvrnorm2)
-export(ns_fun_fromImports)
-export(ns_name)
 export(rfactor)
 export(rmarkpp)
 export(rmarks_ppp)
