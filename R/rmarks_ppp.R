@@ -24,11 +24,11 @@
 #' 
 #' plot(pp <- spatstat.random::rpoispp(lambda = 100))
 #' 
-#' plot(pp |> rmarks_ppp(rlnorm)(sdlog = .5))
-#' plot(pp |> rmarks_ppp(rnbinom)(size = 5L, prob = .3))
-#' 
-#' plot(mpp <- pp |> rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
-#' stopifnot(spatstat.geom::is.multitype(mpp))
+#' pp2 = pp |>
+#'  rmarks_ppp(rlnorm)(sdlog = .5) |>
+#'  rmarks_ppp(rnbinom)(size = 5L, prob = .3) |>
+#'  rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3])
+#' plot(pp2)  
 #' @export
 rmarks_ppp <- function(f) {
   
@@ -52,9 +52,15 @@ rmarks_ppp <- function(f) {
   names(tmp)[par_ == '...'] <- '' # important!!
   tmp[[1L]] <- quote(x$n) # overwrite at the end; easiest in programming
   
-  ret[[length(ret)]] <- call(name = '{', 
-    call(name = '<-', quote(x$markformat), 'vector'), 
-    call(name = '<-', quote(x$marks), as.call(c(list(f_), tmp))),
+  #ret[[length(ret)]] <- call(name = '{', 
+  #  call(name = '<-', quote(x$markformat), 'vector'), 
+  #  call(name = '<-', quote(x$marks), as.call(c(list(f_), tmp))),
+  #  call(name = 'return', quote(x))
+  #)
+  ret[[length(ret)]] <- call(
+    name = '{', 
+    #call(name = 'append_marks.ppp<-', quote(x), value = as.call(c(list(f_), tmp))), # correct, but ..
+    call(name = '<-', call(name = 'append_marks.ppp', quote(x)), value = as.call(c(list(f_), tmp))), # pretty, but.. hahaha
     call(name = 'return', quote(x))
   )
   
@@ -65,10 +71,6 @@ rmarks_ppp <- function(f) {
   return(as.function.default(ret))
   
 }
-
-
-
-
 
 
 

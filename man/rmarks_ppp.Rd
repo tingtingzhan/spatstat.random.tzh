@@ -29,9 +29,9 @@ rmarks_ppp('rnbinom')
 
 plot(pp <- spatstat.random::rpoispp(lambda = 100))
 
-plot(pp |> rmarks_ppp(rlnorm)(sdlog = .5))
-plot(pp |> rmarks_ppp(rnbinom)(size = 5L, prob = .3))
-
-plot(mpp <- pp |> rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
-stopifnot(spatstat.geom::is.multitype(mpp))
+pp2 = pp |>
+ rmarks_ppp(rlnorm)(sdlog = .5) |>
+ rmarks_ppp(rnbinom)(size = 5L, prob = .3) |>
+ rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3])
+plot(pp2)  
 }
