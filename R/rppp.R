@@ -28,7 +28,7 @@
 #' otherwise returns a \link[base]{length}-`n` \link[spatstat.geom]{solist}
 #' (which also has \link[base]{class} `'ppplist'`).
 #' 
-#' The returned \link[spatstat.geom]{ppp.object}(s) contains only 
+#' The returned \link[spatstat.geom]{ppp.object}(s) contain only 
 #' \eqn{x}- and \eqn{y}-\link[spatstat.geom]{coords}, 
 #' if only one \link[base]{list} is present in the `...` \link[rlang]{dyn-dots} argument.
 #' Otherwise, they contain one or more \link[spatstat.geom]{marks}

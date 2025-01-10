@@ -34,7 +34,7 @@ Function \link{.rppp} returns a \link[spatstat.geom]{ppp.object} if \code{(n==1L
 otherwise returns a \link[base]{length}-\code{n} \link[spatstat.geom]{solist}
 (which also has \link[base]{class} \code{'ppplist'}).
 
-The returned \link[spatstat.geom]{ppp.object}(s) contains only
+The returned \link[spatstat.geom]{ppp.object}(s) contain only
 \eqn{x}- and \eqn{y}-\link[spatstat.geom]{coords},
 if only one \link[base]{list} is present in the \code{...} \link[rlang]{dyn-dots} argument.
 Otherwise, they contain one or more \link[spatstat.geom]{marks}
