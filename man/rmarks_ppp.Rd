@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarks_ppp.R
 \name{rmarks_ppp}
 \alias{rmarks_ppp}
-\title{Create Random \code{marks} Generation Function for \link[spatstat.geom]{ppp} Object}
+\title{Create Random \code{marks} Generation Function for \link[spatstat.geom]{ppp.object}}
 \usage{
 rmarks_ppp(f)
 }
@@ -13,15 +13,16 @@ Can also be the function name as a \link[base]{character} scalar.}
 }
 \value{
 Function \link{rmarks_ppp} returns a \emph{\strong{\link[base]{function}}},
-which generates random marks of a \link[spatstat.geom]{ppp} object
-following the distribution specified by argument \code{f}.
-
-The returned \emph{\strong{\link[base]{function}}} has first parameter \code{x} taking an argument of a \link[spatstat.geom]{ppp} object.
-
-The returned \emph{\strong{\link[base]{function}}} returns a \link[spatstat.geom]{ppp} object.
+which generates random marks of a \link[spatstat.geom]{ppp.object}
+following the probability distribution specified by argument \code{f}.
+The returned \emph{\strong{\link[base]{function}}}
+\itemize{
+\item {has first parameter \code{x} taking an argument of a \link[spatstat.geom]{ppp.object}.}
+\item {returns a \link[spatstat.geom]{ppp.object}.}
+}
 }
 \description{
-Create random \code{marks} generation \emph{\strong{\link[base]{function}}} for \link[spatstat.geom]{ppp} object.
+Create random \code{marks} generation \emph{\strong{\link[base]{function}}} for \link[spatstat.geom]{ppp.object}.
 }
 \examples{
 rmarks_ppp(rlnorm)
@@ -29,9 +30,8 @@ rmarks_ppp('rnbinom')
 
 plot(pp <- spatstat.random::rpoispp(lambda = 100))
 
-pp2 = pp |>
+plot(pp |>
  rmarks_ppp(rlnorm)(sdlog = .5) |>
  rmarks_ppp(rnbinom)(size = 5L, prob = .3) |>
- rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3])
-plot(pp2)  
+ rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
 }

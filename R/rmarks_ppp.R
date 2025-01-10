@@ -1,9 +1,9 @@
 
 
-#' @title Create Random `marks` Generation Function for \link[spatstat.geom]{ppp} Object
+#' @title Create Random `marks` Generation Function for \link[spatstat.geom]{ppp.object}
 #' 
 #' @description
-#' Create random `marks` generation ***\link[base]{function}*** for \link[spatstat.geom]{ppp} object.
+#' Create random `marks` generation ***\link[base]{function}*** for \link[spatstat.geom]{ppp.object}.
 #' 
 #' @param f \link[base]{function} of random number generation, 
 #' e.g., \link[stats]{rlnorm}, \link[stats]{rnbinom}, etc.
@@ -11,12 +11,13 @@
 #' 
 #' @returns 
 #' Function [rmarks_ppp] returns a ***\link[base]{function}***,
-#' which generates random marks of a \link[spatstat.geom]{ppp} object 
-#' following the distribution specified by argument `f`.
-#' 
-#' The returned ***\link[base]{function}*** has first parameter `x` taking an argument of a \link[spatstat.geom]{ppp} object.
-#' 
-#' The returned ***\link[base]{function}*** returns a \link[spatstat.geom]{ppp} object.
+#' which generates random marks of a \link[spatstat.geom]{ppp.object} 
+#' following the probability distribution specified by argument `f`.
+#' The returned ***\link[base]{function}*** 
+#' \itemize{
+#' \item {has first parameter `x` taking an argument of a \link[spatstat.geom]{ppp.object}.}
+#' \item {returns a \link[spatstat.geom]{ppp.object}.}
+#' }
 #' 
 #' @examples
 #' rmarks_ppp(rlnorm)
@@ -24,11 +25,10 @@
 #' 
 #' plot(pp <- spatstat.random::rpoispp(lambda = 100))
 #' 
-#' pp2 = pp |>
+#' plot(pp |>
 #'  rmarks_ppp(rlnorm)(sdlog = .5) |>
 #'  rmarks_ppp(rnbinom)(size = 5L, prob = .3) |>
-#'  rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3])
-#' plot(pp2)  
+#'  rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
 #' @export
 rmarks_ppp <- function(f) {
   
@@ -52,21 +52,12 @@ rmarks_ppp <- function(f) {
   names(tmp)[par_ == '...'] <- '' # important!!
   tmp[[1L]] <- quote(x$n) # overwrite at the end; easiest in programming
   
-  #ret[[length(ret)]] <- call(name = '{', 
-  #  call(name = '<-', quote(x$markformat), 'vector'), 
-  #  call(name = '<-', quote(x$marks), as.call(c(list(f_), tmp))),
-  #  call(name = 'return', quote(x))
-  #)
   ret[[length(ret)]] <- call(
     name = '{', 
     #call(name = 'append_marks.ppp<-', quote(x), value = as.call(c(list(f_), tmp))), # correct, but ..
     call(name = '<-', call(name = 'append_marks.ppp', quote(x)), value = as.call(c(list(f_), tmp))), # pretty, but.. hahaha
     call(name = 'return', quote(x))
   )
-  
-  #  #ppp(x = x$x, y = x$y, window = x$window, marks = rlnorm(n = x$n, meanlog = meanlog, sdlog = sdlog))
-  #  # they are ?base::identical, as of 2024-11-18 # packageDate('spatstat.geom')
-  #  # so that Tingting does not need to @importFrom spatstat.geom ppp
   
   return(as.function.default(ret))
   

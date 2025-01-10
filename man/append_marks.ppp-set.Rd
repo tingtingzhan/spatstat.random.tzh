@@ -9,7 +9,7 @@ append_marks.ppp(x) <- value
 \arguments{
 \item{x}{a \link[spatstat.geom]{ppp.object}}
 
-\item{value}{a \link[base]{vector}}
+\item{value}{a \link[base]{factor} or \link[base]{numeric} \link[base]{vector}}
 }
 \value{
 This syntax sugar returns a \link[spatstat.geom]{ppp.object}.

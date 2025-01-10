@@ -4,7 +4,7 @@
 #' 
 #' @param x a \link[spatstat.geom]{ppp.object}
 #' 
-#' @param value a \link[base]{vector}
+#' @param value a \link[base]{factor} or \link[base]{numeric} \link[base]{vector}
 #' 
 #' @returns 
 #' This syntax sugar returns a \link[spatstat.geom]{ppp.object}.
@@ -52,7 +52,7 @@
     names(value) <- paste0('m', length(x$marks)+1L)
     x$marks <- data.frame(x$marks, value)
       
-  })
+  }, stop('unsupported markformat'))
   
   return(x)
   
