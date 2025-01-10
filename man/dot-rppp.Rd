@@ -16,11 +16,11 @@
 number of \link[spatstat.geom]{ppp.object}s to generate.
 Default \code{1L}.}
 
-\item{...}{two or more named \link[base]{list}s.
+\item{...}{one or more named \link[base]{list}s.
 The first \link[base]{list} specifies the parameters to
 generate the \eqn{x}- and \eqn{y}-\link[spatstat.geom]{coords}.
-The second to last \link[base]{list}s specify the parameters to
-generate one or more \link[spatstat.geom]{marks}}
+The second to last \link[base]{list}s, if available, specify the parameters to
+generate one or more \link[spatstat.geom]{marks}.}
 
 \item{win}{\link[spatstat.geom]{owin} window}
 
@@ -33,13 +33,19 @@ when \code{n==1L}. Default \code{TRUE}}
 Function \link{.rppp} returns a \link[spatstat.geom]{ppp.object} if \code{(n==1L)&element1},
 otherwise returns a \link[base]{length}-\code{n} \link[spatstat.geom]{solist}
 (which also has \link[base]{class} \code{'ppplist'}).
+
+The returned \link[spatstat.geom]{ppp.object}(s) contains only
+\eqn{x}- and \eqn{y}-\link[spatstat.geom]{coords},
+if only one \link[base]{list} is present in the \code{...} \link[rlang]{dyn-dots} argument.
+Otherwise, they contain one or more \link[spatstat.geom]{marks}
+according to the rest of the \link[base]{list}(s) in the \code{...} argument.
 }
 \description{
 To generate \link[spatstat.geom]{ppp.object}(s) with
 one or more \link[spatstat.geom]{marks}.
 }
 \examples{
-.rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)))
+.rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks
 
 plot(r1 <- .rppp(
  rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)), 

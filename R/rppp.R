@@ -10,11 +10,11 @@
 #' number of \link[spatstat.geom]{ppp.object}s to generate.
 #' Default `1L`.
 #' 
-#' @param ... two or more named \link[base]{list}s.
+#' @param ... one or more named \link[base]{list}s.
 #' The first \link[base]{list} specifies the parameters to 
 #' generate the \eqn{x}- and \eqn{y}-\link[spatstat.geom]{coords}.
-#' The second to last \link[base]{list}s specify the parameters to
-#' generate one or more \link[spatstat.geom]{marks}
+#' The second to last \link[base]{list}s, if available, specify the parameters to
+#' generate one or more \link[spatstat.geom]{marks}.
 #' 
 #' @param win \link[spatstat.geom]{owin} window
 #' 
@@ -28,8 +28,14 @@
 #' otherwise returns a \link[base]{length}-`n` \link[spatstat.geom]{solist}
 #' (which also has \link[base]{class} `'ppplist'`).
 #' 
+#' The returned \link[spatstat.geom]{ppp.object}(s) contains only 
+#' \eqn{x}- and \eqn{y}-\link[spatstat.geom]{coords}, 
+#' if only one \link[base]{list} is present in the `...` \link[rlang]{dyn-dots} argument.
+#' Otherwise, they contain one or more \link[spatstat.geom]{marks}
+#' according to the rest of the \link[base]{list}(s) in the `...` argument.
+#' 
 #' @examples
-#' .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)))
+#' .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks
 #' 
 #' plot(r1 <- .rppp(
 #'  rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)), 
