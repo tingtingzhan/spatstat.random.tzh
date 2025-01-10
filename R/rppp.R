@@ -1,6 +1,6 @@
 
 
-#' @title Generate Marked Point Pattern
+#' @title Generate (Marked) Point Pattern
 #' 
 #' @description
 #' To generate \link[spatstat.geom]{ppp.object}(s), 

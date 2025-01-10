@@ -2,7 +2,7 @@
 % Please edit documentation in R/rppp.R
 \name{.rppp}
 \alias{.rppp}
-\title{Generate Marked Point Pattern}
+\title{Generate (Marked) Point Pattern}
 \usage{
 .rppp(
   n = 1L,
