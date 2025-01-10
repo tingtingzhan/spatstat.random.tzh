@@ -44,6 +44,10 @@ according to the rest of the \link[base]{list}(s) in the \code{...} argument.
 To generate \link[spatstat.geom]{ppp.object}(s),
 with none or one or multiple \link[spatstat.geom]{marks}.
 }
+\note{
+The name \code{rppp()} is too aggressive, which might be claimed in future by package \CRANpkg{spatstat.random}.
+Therefore we name this function \link{.rppp} as if it is hidden (see parameter \code{all.names} of function \link[base]{ls}).
+}
 \examples{
 .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks
 

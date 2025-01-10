@@ -34,6 +34,10 @@
 #' Otherwise, they contain one or more \link[spatstat.geom]{marks}
 #' according to the rest of the \link[base]{list}(s) in the `...` argument.
 #' 
+#' @note
+#' The name `rppp()` is too aggressive, which might be claimed in future by package \CRANpkg{spatstat.random}.
+#' Therefore we name this function [.rppp] as if it is hidden (see parameter `all.names` of function \link[base]{ls}).
+#' 
 #' @examples
 #' .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks
 #' 
