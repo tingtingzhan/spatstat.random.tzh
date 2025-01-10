@@ -3,8 +3,8 @@
 #' @title Generate Marked Point Pattern
 #' 
 #' @description
-#' To generate \link[spatstat.geom]{ppp.object}(s) with 
-#' one or more \link[spatstat.geom]{marks}.
+#' To generate \link[spatstat.geom]{ppp.object}(s), 
+#' with none or one or multiple \link[spatstat.geom]{marks}.
 #' 
 #' @param n \link[base]{integer} scalar, 
 #' number of \link[spatstat.geom]{ppp.object}s to generate.

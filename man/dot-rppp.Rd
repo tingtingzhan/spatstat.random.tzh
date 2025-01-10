@@ -41,8 +41,8 @@ Otherwise, they contain one or more \link[spatstat.geom]{marks}
 according to the rest of the \link[base]{list}(s) in the \code{...} argument.
 }
 \description{
-To generate \link[spatstat.geom]{ppp.object}(s) with
-one or more \link[spatstat.geom]{marks}.
+To generate \link[spatstat.geom]{ppp.object}(s),
+with none or one or multiple \link[spatstat.geom]{marks}.
 }
 \examples{
 .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks
