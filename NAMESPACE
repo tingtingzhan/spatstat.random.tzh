@@ -3,7 +3,7 @@
 S3method(sort_by,ppp)
 export("append_marks.ppp<-")
 export(.rppp)
-export(batch_rppp)
+export(grouped_rppp)
 export(mvrnorm2)
 export(rfactor)
 export(rmarks_ppp)

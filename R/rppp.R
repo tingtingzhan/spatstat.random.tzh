@@ -127,11 +127,11 @@
 #' @param win \link[spatstat.geom]{owin} window
 #' 
 #' @returns 
-#' Function [batch_rppp] returns a \link[spatstat.geom]{hyperframe}.
+#' Function [grouped_rppp] returns a \link[spatstat.geom]{hyperframe}.
 #' 
 #' @importFrom spatstat.geom owin hyperframe
 #' @export
-batch_rppp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
+grouped_rppp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
   
   dots <- list(...)
   dots <- dots[lengths(dots, use.names = FALSE) > 0L]
@@ -158,6 +158,7 @@ batch_rppp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1))) {
 
 
 
-rmarkpp <- function(...) .Defunct(msg = 'change function call to `.rppp`')
+rmarkpp <- function(...) .Defunct(new = '.rppp')
 
-batch_rmarkpp <- function(...) .Defunct(msg = 'change function call to `batch_rppp`')
+batch_rmarkpp <- function(...) .Defunct(msg = 'change function call to `grouped_rppp`')
+batch_rppp <- function(...) .Defunct(msg = 'change function call to `grouped_rppp`')
