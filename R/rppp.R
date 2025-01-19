@@ -152,13 +152,12 @@ grouped_rppp <- function(n, ..., win = owin(xrange = c(-1,1), yrange = c(-1,1)))
   attr(f1, which = 'levels') <- as.character(f1_)
   class(f1) <- 'factor'
   
-  hyperframe(ppp = unlist(ret0, recursive = FALSE), f = f1)
+  ret <- hyperframe(ppp = unlist(ret0, recursive = FALSE), f = f1)
+  attr(ret, which = 'group') <- ~f
+  class(ret) <- c('groupedHyperframe', class(ret))
+  return(ret)
   
 }
 
 
 
-rmarkpp <- function(...) .Defunct(new = '.rppp')
-
-batch_rmarkpp <- function(...) .Defunct(msg = 'change function call to `grouped_rppp`')
-batch_rppp <- function(...) .Defunct(msg = 'change function call to `grouped_rppp`')
