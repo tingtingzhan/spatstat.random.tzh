@@ -2,10 +2,7 @@ Package: spatstat.random.tzh
 Type: Package
 Title: spatstat.random.tzh
 Version: 0.1.0
-Date: 2023-03-16
-Author: Tingting Zhan [aut, cre, cph]
-        (<https://orcid.org/0000-0001-9971-4844>), Inna Chervoneva [aut,
-        cph] (<https://orcid.org/0000-0002-9104-4505>)
+Date: 2025-01-20
 Maintainer: Tingting Zhan <tingtingzhan@gmail.com>
 Description: A story about spatstat.random.tzh.
 Roxygen: list(markdown = TRUE)
@@ -21,6 +18,6 @@ Authors@R: c(person(given = 'Tingting', family =
         'Chervoneva', role = c('aut'), email =
         'Inna.Chervoneva@jefferson.edu', comment = c(ORCID =
         '0000-0002-9104-4505')))
-Imports: spatstat.geom, spatstat.random, cli, MASS 
+Imports: cli, spatstat.geom, spatstat.random, MASS 
 Suggests: spatstat.data
 

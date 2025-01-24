@@ -52,17 +52,17 @@ Therefore we name this function \link{.rppp} as if it is hidden (see parameter \
 .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks
 
 plot(r1 <- .rppp(
- rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4)), 
- rlnorm = list(meanlog = c(3,5), sdlog = c(.4,.2)),
+ rMatClust = list(kappa = c(10, 5), scale = c(.15, .06), mu = c(8, 4)), 
+ rlnorm = list(meanlog = c(3, 5), sdlog = c(.4, .2)),
  rnbinom = list(size = c(4, 6), prob = c(.3, .1))
 ))
 
 plot(r2 <- .rppp(
- rpoispp = list(lambda = c(3,6)),
- rlnorm = list(meanlog = c(3,5), sdlog = c(.4,.2)),
+ rpoispp = list(lambda = c(3, 6)),
+ rlnorm = list(meanlog = c(3, 5), sdlog = c(.4, .2)),
  rnbinom = list(size = c(4, 6), prob = c(.3, .1))
 ))
 
-plot(spatstat.geom::superimpose(r1, r2))
+plot(r <- spatstat.geom::superimpose(r1, r2))
 
 }
