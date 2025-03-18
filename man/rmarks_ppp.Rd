@@ -12,7 +12,7 @@ e.g., \link[stats]{rlnorm}, \link[stats]{rnbinom}, etc.
 Can also be the function name as a \link[base]{character} scalar.}
 }
 \value{
-Function \link{rmarks_ppp} returns a \emph{\strong{\link[base]{function}}},
+Function \code{\link[=rmarks_ppp]{rmarks_ppp()}} returns a \emph{\strong{\link[base]{function}}},
 which generates random marks of a \link[spatstat.geom]{ppp.object}
 following the probability distribution specified by argument \code{f}.
 The returned \emph{\strong{\link[base]{function}}}
@@ -34,4 +34,6 @@ plot(pp |>
  rmarks_ppp(rlnorm)(sdlog = .5) |>
  rmarks_ppp(rnbinom)(size = 5L, prob = .3) |>
  rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
+ 
 }
+\keyword{internal}

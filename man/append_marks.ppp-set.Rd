@@ -18,27 +18,30 @@ This syntax sugar returns a \link[spatstat.geom]{ppp.object}.
 Append to \link[spatstat.geom]{marks}
 }
 \examples{
-library(spatstat.data)
 library(spatstat.geom)
 
 # no marks
+data(vesicles, package = 'spatstat.data')
 plot(vesicles)
 append_marks.ppp(vesicles) = rlnorm(n = npoints(vesicles))
 plot(vesicles)
 
 # vector marks, numeric
+data(waka, package = 'spatstat.data')
 plot(waka)
 append_marks.ppp(waka) = rlnorm(n = npoints(waka))
 plot(waka)
 
 # vector marks, multitype
+data(urkiola, package = 'spatstat.data')
 plot(urkiola)
 append_marks.ppp(urkiola) = rlnorm(n = npoints(urkiola))
 plot(urkiola)
 
 # dataframe marks
+data(stonetools, package = 'spatstat.data')
 plot(stonetools)
 append_marks.ppp(stonetools) = rlnorm(n = npoints(stonetools))
 plot(stonetools)
-
 }
+\keyword{internal}

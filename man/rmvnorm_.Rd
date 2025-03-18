@@ -16,7 +16,7 @@ rmvnorm_(n, mu, Sigma, ...)
 \item{...}{additional parameters of function \link[MASS]{mvrnorm}}
 }
 \value{
-Function \link{rmvnorm_} returns a \link[base]{list} of \link[base]{matrix}es.
+Function \code{\link[=rmvnorm_]{rmvnorm_()}} returns a \link[base]{list} of \link[base]{matrix}es.
 }
 \description{
 Batch process of random multivariate normal generation \link{mvrnorm2}.

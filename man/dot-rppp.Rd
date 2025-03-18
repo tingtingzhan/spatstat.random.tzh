@@ -30,7 +30,7 @@ instead of a \link[base]{length}-\code{1L} \link[spatstat.geom]{solist},
 when \code{n==1L}. Default \code{TRUE}}
 }
 \value{
-Function \link{.rppp} returns a \link[spatstat.geom]{ppp.object} if \code{(n==1L)&element1},
+Function \code{\link[=.rppp]{.rppp()}} returns a \link[spatstat.geom]{ppp.object} if \code{(n==1L)&element1},
 otherwise returns a \link[base]{length}-\code{n} \link[spatstat.geom]{solist}
 (which also has \link[base]{class} \code{'ppplist'}).
 
@@ -46,7 +46,7 @@ with none or one or multiple \link[spatstat.geom]{marks}.
 }
 \note{
 The name \code{rppp()} is too aggressive, which might be claimed in future by package \CRANpkg{spatstat.random}.
-Therefore we name this function \link{.rppp} as if it is hidden (see parameter \code{all.names} of function \link[base]{ls}).
+Therefore we name this function \code{\link[=.rppp]{.rppp()}} as if it is hidden (see parameter \code{all.names} of function \link[base]{ls}).
 }
 \examples{
 .rppp(rMatClust = list(kappa = c(10,5), scale = c(.15,.06), mu = c(8,4))) # only coords, no marks

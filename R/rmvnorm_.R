@@ -13,7 +13,7 @@
 #' @param ... additional parameters of function \link[MASS]{mvrnorm}
 #' 
 #' @returns
-#' Function [rmvnorm_] returns a \link[base]{list} of \link[base]{matrix}es.
+#' Function [rmvnorm_()] returns a \link[base]{list} of \link[base]{matrix}es.
 #' 
 #' @examples
 #' rmvnorm_(n = 5L, mu = list(a = c(0, 3), b = c(3, 7)), Sigma = list(a = .5, b = 1.2))

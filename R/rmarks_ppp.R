@@ -10,7 +10,7 @@
 #' Can also be the function name as a \link[base]{character} scalar.
 #' 
 #' @returns 
-#' Function [rmarks_ppp] returns a ***\link[base]{function}***,
+#' Function [rmarks_ppp()] returns a ***\link[base]{function}***,
 #' which generates random marks of a \link[spatstat.geom]{ppp.object} 
 #' following the probability distribution specified by argument `f`.
 #' The returned ***\link[base]{function}*** 
@@ -29,6 +29,8 @@
 #'  rmarks_ppp(rlnorm)(sdlog = .5) |>
 #'  rmarks_ppp(rnbinom)(size = 5L, prob = .3) |>
 #'  rmarks_ppp(rfactor)(prob = c(2,1,3), levels = letters[1:3]))
+#'  
+#' @keywords internal  
 #' @export
 rmarks_ppp <- function(f) {
   
